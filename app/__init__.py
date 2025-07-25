@@ -25,6 +25,9 @@ def create_app():
     
     from .routes.workout_logs import log_bp
     app.register_blueprint(log_bp, url_prefix="/api")
+    
+    from .routes.exercises import exercise_bp
+    app.register_blueprint(exercise_bp, url_prefix="/api")
 
     with app.app_context():
         db.create_all()

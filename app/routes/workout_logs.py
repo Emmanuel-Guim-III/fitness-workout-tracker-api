@@ -63,7 +63,7 @@ def get_workout_logs(workout_id):
 def update_log(log_id):
     data = request.get_json()
 
-    log = WorkoutLog.query.filter_by(id=log_id).first()
+    log = WorkoutLog.query.get(log_id)
     if not log:
         return jsonify({"error": "Log not found"}), 404
 
@@ -78,7 +78,7 @@ def update_log(log_id):
 @log_bp.route('/workout-logs/<int:log_id>', methods=['DELETE'])
 @jwt_required()
 def delete_log(log_id):
-    log = WorkoutLog.query.filter_by(id=log_id).first()
+    log = WorkoutLog.query.get(log_id)
     if not log:
         return jsonify({"error": "Workout log not found"}), 404
 
